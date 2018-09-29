@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form id="form">  
+  
+    <p:growl id="msgs" showDetail="true" />  
+  
+    <p:dataTable id="compras" var="compra" value="#{compraBean.compras}" >
+          
+        <p:column headerText="Numero" >  
+            <h:outputText value="#{compra.numero}" />  
+        </p:column>  
+  
+      		<p:column headerText="Data">
+					 <h:outputText value="#{compra.data}" />
+				</p:column>
+				<p:column headerText="Responsavel">
+					<h:outputText value="#{compra.responsavel}" />
+				</p:column>
+				<p:column headerText="Valor">
+					<h:outputText value="#{compra.valor}" />
+				</p:column>
+				<p:column headerText="Cliente">
+					<h:outputText value="#{compra.cliente.codigo}" />
+				</p:column>
+				<p:column headerText="Reserva">
+					<h:outputText value="#{compra.reserva.codigo}" />
+				</p:column> 
+        
+      
+        
+        <p:column style="width:4%">  
+                <p:commandButton id="selectButton" update=":form:display" oncomplete="compraDialog.show()" icon="ui-icon-search" title="Atualizar">  
+                <f:setPropertyActionListener value="#{compra}" target="#{compraBean.compraVO}" />  
+            </p:commandButton>  
+        </p:column>   
+  
+    </p:dataTable>  
+  
+    <p:dialog header="Atualiza Compra" widgetVar="compraDialog" resizable="false" id="compraDlg"  
+                showEffect="fade" hideEffect="explode" modal="true" >  
+                
+ 
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+   
+  
+            <h:outputText value="Numero:" />  
+            <h:inputText value="#{compraBean.compraVO.numero}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Data:" />  
+            <h:inputText value="#{compraBean.compraVO.data}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Responsavel:" />  
+            <h:inputText value="#{compraBean.compraVO.responsavel}" style="font-weight:bold"/>  
+  
+            <h:outputText value="Valor:" />  
+            <h:inputText value="#{compraBean.compraVO.valor}" style="font-weight:bold"/> 
+            
+              <h:outputText value="Cliente:" />  
+            <h:inputText value="#{compraBean.compraVO.cliente.codigo}" style="font-weight:bold"/>
+            
+             <h:outputText value="Reserva:" />  
+            <h:inputText value="#{compraBean.compraVO.cliente.codigo}" style="font-weight:bold"/>
+            
+           
+            
+            <h:commandButton value="Salvar" action="#{compraBean.atualizar}"
+					icon="ui-icon-disk" />
+  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+  
+</h:form> 
+ </ui:define>	 
+	</ui:composition>
+</html>

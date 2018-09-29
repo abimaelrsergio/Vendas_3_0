@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form id="form">  
+  
+    <p:growl id="msgs" showDetail="true" />  
+  
+    <p:dataTable id="usuarios" var="usuario" value="#{usuarioBean.usuarios}" >
+          
+        <p:column headerText="Codigo" >  
+            <h:outputText value="#{usuario.id}" />  
+        </p:column>  
+  
+        <p:column headerText="Login" >  
+            <h:outputText value="#{usuario.login}" />  
+        </p:column>  
+  
+        <p:column headerText="Senha" >  
+            <h:outputText value="#{usuario.senha}" />  
+        </p:column>  
+  
+        <p:column headerText="Grupo">  
+            <h:outputText value="#{usuario.grupo}" />  
+        </p:column>  
+        <p:column headerText="Perfil" >  
+            <h:outputText value="#{usuario.perfil}" />  
+        </p:column>  
+  
+        <p:column headerText="Bloqueado">  
+            <h:outputText value="#{usuario.bloqueado}" />  
+        </p:column>  
+         <p:column headerText="Ultimo acesso">  
+            <h:outputText value="#{usuario.ultimoAcesso}" />  
+        </p:column> 
+      
+        
+        <p:column style="width:4%">  
+                <p:commandButton id="selectButton" update=":form:display" oncomplete="usuarioDialog.show()" icon="ui-icon-search" title="Atualizar">  
+                <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuarioVO}" />  
+            </p:commandButton>  
+        </p:column>   
+  
+    </p:dataTable>  
+  
+    <p:dialog header="Atualiza Usuario" widgetVar="usuarioDialog" resizable="false" id="usuarioDlg"  
+                showEffect="fade" hideEffect="explode" modal="true" >  
+                
+ 
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+   
+  
+            <h:outputText value="Codigo:" />  
+            <h:inputText value="#{usuarioBean.usuarioVO.id}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Login:" />  
+            <h:inputText value="#{usuarioBean.usuarioVO.login}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Senha:" />  
+            <h:inputText value="#{usuarioBean.usuarioVO.senha}" style="font-weight:bold"/> 
+            
+             <h:outputText value="Grupo:" />  
+            <h:inputText value="#{usuarioBean.usuarioVO.grupo}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Perfil: " />  
+            <h:inputText value="#{usuarioBean.usuarioVO.perfil}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Bloqueado:" />  
+            <h:inputText value="#{usuarioBean.usuarioVO.bloqueado}" style="font-weight:bold"/>  
+  
+            <h:outputText value="Ultimo Acesso:" />  
+            <h:inputText value="#{usuarioBean.usuarioVO.ultimoAcesso}" style="font-weight:bold"/> 
+            
+           
+            
+            <h:commandButton value="Salvar" action="#{usuarioBean.atualizar}"
+					icon="ui-icon-disk" />
+  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+  
+</h:form> 
+ </ui:define>	 
+	</ui:composition>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form id="form">  
+  
+    <p:growl id="msgs" showDetail="true" />  
+  
+    <p:dataTable id="reservas" var="reserva" value="#{reservaBean.reservas}" >
+          
+        <p:column headerText="Codigo" >  
+            <h:outputText value="#{reserva.codigo}" />  
+        </p:column>  
+  
+      		<p:column headerText="Data">
+					 <h:outputText value="#{reserva.data}" />
+				</p:column>
+				<p:column headerText="Atendente">
+					<h:outputText value="#{reserva.atendente}" />
+				</p:column>
+				<p:column headerText="Valor">
+					<h:outputText value="#{reserva.valor}" />
+				</p:column>
+				<p:column headerText="Cliente">
+					<h:outputText value="#{reserva.cliente.nome}" />
+				</p:column> 
+        
+      
+        
+        <p:column style="width:4%">  
+                <p:commandButton id="selectButton" update=":form:display" oncomplete="reservaDialog.show()" icon="ui-icon-search" title="Atualizar">  
+                <f:setPropertyActionListener value="#{reserva}" target="#{reservaBean.reservaVO}" />  
+            </p:commandButton>  
+        </p:column>   
+  
+    </p:dataTable>  
+  
+    <p:dialog header="Atualiza Reserva" widgetVar="reservaDialog" resizable="false" id="produtoDlg"  
+                showEffect="fade" hideEffect="explode" modal="true" >  
+                
+ 
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+   
+  
+            <h:outputText value="Codigo:" />  
+            <h:inputText value="#{reservaBean.reservaVO.codigo}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Data:" />  
+            <h:inputText value="#{reservaBean.reservaVO.data}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Atendente:" />  
+            <h:inputText value="#{reservaBean.reservaVO.atendente}" style="font-weight:bold"/>  
+  
+            <h:outputText value="Valor:" />  
+            <h:inputText value="#{reservaBean.reservaVO.valor}" style="font-weight:bold"/> 
+            
+              <h:outputText value="Cliente:" />  
+            <h:inputText value="#{reservaBean.reservaVO.cliente.nome}" style="font-weight:bold"/>
+            
+           
+            
+            <h:commandButton value="Salvar" action="#{reservaBean.atualizar}"
+					icon="ui-icon-disk" />
+  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+  
+</h:form> 
+ </ui:define>	 
+	</ui:composition>
+</html>

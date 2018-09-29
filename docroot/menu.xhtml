@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+	<f:view contentType="text/html" >
+	<h:form>
+		<p:menubar autoDisplay="true">
+			<p:submenu label="Usuarios" icon="ui-icon-pencil">
+				<p:menuitem value="Cadastrar" url="/inserirUsuario.xhtml" />
+				<p:menuitem value="Excluir" url="/excluirUsuario.xhtml"  />
+				<p:menuitem value="Atualizar" url="/atualizarUsuario.xhtml"  />
+			</p:submenu>
+			<p:submenu label="Clientes" icon="ui-icon-pencil">
+				<p:menuitem value="Cadastrar" url="/cadastrarCliente.xhtml" />
+				<p:menuitem value="Excluir" url="/excluirCliente.xhtml"  />
+				<p:menuitem value="Atualizar" url="/atualizarCliente.xhtml"  />
+			</p:submenu>
+			<p:submenu label="Produtos" icon="ui-icon-pencil">
+				<p:menuitem value="Cadastrar" url="/cadastrarProduto.xhtml"  />
+				<p:menuitem value="Excluir" url="/excluirProduto.xhtml"  />
+				<p:menuitem value="Atualizar" url="/atualizarProduto.xhtml"  />
+			</p:submenu>
+			<p:submenu label="Compras" icon="ui-icon-pencil">
+				<p:menuitem value="Cadastrar" url="/cadastrarCompras.xhtml"  />
+				<p:menuitem value="Excluir" url="/excluirCompras.xhtml"  />
+				<p:menuitem value="Atualizar" url="/atualizarCompras.xhtml"  />
+				<p:menuitem value="Localizar" url="/localizarCompras.xhtml"  />
+			</p:submenu>
+			<p:submenu label="Reservas" icon="ui-icon-pencil">
+				<p:menuitem value="Cadastrar Reservas" url="/cadastrarReserva.xhtml"  />
+				<p:menuitem value="Excluir Reservas" url="/excluirReserva.xhtml"  />
+				<p:menuitem value="Atualizar Reservas" url="/atualizarReserva.xhtml"  />
+			</p:submenu>
+			<p:submenu label="Itens do Pedido" icon="ui-icon-pencil">
+				<p:menuitem value="Cadastrar Itens" url="/cadastrarItens.xhtml"  />
+				<p:menuitem value="Excluir Itens" url="/excluirItens.xhtml"  />
+				<p:menuitem value="Atualizar Itens" url="/atualizarItens.xhtml"  />
+			</p:submenu>
+
+		</p:menubar>
+
+	</h:form>
+	</f:view>
+</ui:composition>
+</html>
+
+

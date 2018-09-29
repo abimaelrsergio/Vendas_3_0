@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form id="form">  
+  
+    <p:growl id="msgs" showDetail="true" />  
+  
+    <p:dataTable id="itens" var="item" value="#{itemBean.itens}" >
+          
+        <p:column headerText="ID" >  
+            <h:outputText value="#{item.id}" />  
+        </p:column>  
+  
+      		<p:column headerText="Situacao">
+					 <h:outputText value="#{item.situacao}" />
+				</p:column>
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{item.quantidade}" />
+				</p:column>
+				<p:column headerText="Valor">
+					<h:outputText value="#{item.valor}" />
+				</p:column>
+				<p:column headerText="Compra">
+					<h:outputText value="#{item.compra.codigo}" />
+				</p:column>
+				<p:column headerText="Reserva">
+					<h:outputText value="#{item.reserva.codigo}" />
+				</p:column>
+				<p:column headerText="Produto">
+					<h:outputText value="#{item.produto.codigo}" />
+				</p:column> 
+        
+      
+        
+        <p:column style="width:4%">  
+                <p:commandButton id="selectButton" update=":form:display" oncomplete="itemDialog.show()" icon="ui-icon-search" title="Atualizar">  
+                <f:setPropertyActionListener value="#{item}" target="#{itemBean.itemVO}" />  
+            </p:commandButton>  
+        </p:column>   
+  
+    </p:dataTable>  
+  
+    <p:dialog header="Atualiza item" widgetVar="itemDialog" resizable="false" id="itemDlg"  
+                showEffect="fade" hideEffect="explode" modal="true" >  
+                
+ 
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+   
+  
+            <h:outputText value="Situacao:" />  
+            <h:inputText value="#{itemBean.itemVO.situacao}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Produto:" />  
+            <h:inputText value="#{itemBean.itemVO.produto.codigo}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Quantidade:" />  
+            <h:inputText value="#{itemBean.itemVO.quantidade}" style="font-weight:bold"/>  
+  
+            <h:outputText value="Valor:" />  
+            <h:inputText value="#{itemBean.itemVO.valor}" style="font-weight:bold"/> 
+            
+              <h:outputText value="Compra:" />  
+            <h:inputText value="#{itemBean.itemVO.compra.numero}" style="font-weight:bold"/>
+            
+             <h:outputText value="Reserva:" />  
+            <h:inputText value="#{itemBean.itemVO.reserva.codigo}" style="font-weight:bold"/>
+            
+           
+            
+            <h:commandButton value="Salvar" action="#{itemBean.atualizar}"
+					icon="ui-icon-disk" />
+  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+  
+</h:form> 
+ </ui:define>	 
+	</ui:composition>
+</html>

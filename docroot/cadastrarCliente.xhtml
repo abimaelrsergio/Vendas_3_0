@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form  id="form">
+		
+
+		<p:panel header="Cadastro de Clientes">
+			<p:growl />
+
+			<p:panelGrid columns="2">
+
+				<h:outputLabel value="Nome" for="nome" />
+				<h:inputText class="tamanho" id="nome" value="#{clienteBean.clienteVO.nome}" />
+
+				<h:outputLabel value="Endereço" for="endereco" />
+				<h:inputText id="endereco" value="#{clienteBean.clienteVO.endereco}"  />
+				
+				<h:outputLabel value="Situacao" for="situacao" />
+				<h:inputText id="situacao" value="#{clienteBean.clienteVO.situacao}"  />
+				
+				<h:outputLabel value="Telefone" for="telefone" />
+				<h:inputText id="telefone" value="#{clienteBean.clienteVO.telefone}"  />
+				
+				<h:outputText value="Tipo de Cliente: " />  
+       			<p:selectOneMenu id="tipo" value="#{clienteBean.tipoCliente}">  
+		            <f:selectItem itemLabel="Selecione" itemValue="0" />  
+		            <f:selectItem itemLabel="Fisico" itemValue="1" />  
+		            <f:selectItem itemLabel="Juridico" itemValue="2" />  
+		             <f:ajax execute="tipo" render="rg cpf cnpj end ie"/>  
+		        </p:selectOneMenu>  
+		        
+		        <h:outputLabel value="RG" for="rg" />
+				<h:inputText id="rg" value="#{clienteBean.clienteVO.RG}"  disabled="#{clienteBean.tipoCliente != 1}"/>
+				
+				 <h:outputLabel value="CPF" for="cpf" />
+				<h:inputText id="cpf" value="#{clienteBean.clienteVO.CPF}"  disabled="#{clienteBean.tipoCliente != 1}"/>
+				
+				<h:outputLabel value="CNPJ" for="cnpj" />
+				<h:inputText id="cnpj" value="#{clienteBean.clienteVO.CNPJ}" disabled="#{clienteBean.tipoCliente != 2}" />
+				
+				<h:outputLabel value="Endereco" for="end" />
+				<h:inputText id="end" value="#{clienteBean.clienteVO.enderecoJuridico}" disabled="#{clienteBean.tipoCliente != 2}" />
+				
+				<h:outputLabel value="IE" for="ie" />
+				<h:inputText id="ie" value="#{clienteBean.clienteVO.IE}" disabled="#{clienteBean.tipoCliente != 2}" />
+		        
+				
+				<h:outputLabel value="" for="espaco" />
+				<h:commandButton value="Gravar" action="#{clienteBean.grava}"
+					icon="ui-icon-disk" />
+
+			</p:panelGrid>
+		</p:panel>
+
+		<p:separator />
+
+		<p:dataTable value="#{clienteBean.clientes}" var="cliente">
+
+			<p:column headerText="Cliente">
+					#{cliente.nome}
+				</p:column>
+				
+
+		</p:dataTable>
+
+	</h:form>
+ </ui:define>	 
+	</ui:composition>
+</html>

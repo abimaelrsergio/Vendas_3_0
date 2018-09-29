@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form  id="form">
+		
+
+		<p:panel header="Cadastrar Reserva">
+			<p:growl />
+
+			<p:panelGrid columns="2">
+			
+				<h:outputText value="Cliente: " />  
+       			<p:selectOneMenu id="cliente" value="#{compraBean.compraVO.cliente}"  effect="fold" >  
+		            <f:selectItem itemLabel="Selecione" itemValue="0" />  
+		            <f:selectItems value="" />  
+		        </p:selectOneMenu>
+		        
+		        <h:outputText value="Reserva: " />  
+       			<p:selectOneMenu id="reserva" value="#{compraBean.compraVO.reserva}"  effect="fold" >  
+		            <f:selectItem itemLabel="Selecione" itemValue="0" />  
+		            <f:selectItems value="#" />  
+		        </p:selectOneMenu>
+		        
+		        <h:outputText value="Data: " /> 
+		        <p:calendar value="#{compraBean.compraVO.data}" id="popupCal" />
+		        
+		        <h:outputLabel value="Responsavel: " for="responsavel" />
+				<h:inputText id="responsavel" value="#{compraBean.compraVO.atendente}"  />
+
+				<h:outputLabel value="Situacao: " for="situacao" />
+				<h:inputText id="situacao" value="#{compraBean.compraVO.situacao}"  />
+				
+				<h:outputLabel value="Valor: " for="valor" />
+				<h:inputText id="valor" value="#{compraBean.compraVO.valor}"  />
+				
+				<h:outputLabel value="" for="espaco" />
+				<h:commandButton value="Gravar" action="#{reservaBean.grava}"
+					icon="ui-icon-disk" />
+
+			</p:panelGrid>
+		</p:panel>
+
+
+		<p:separator />
+
+	
+
+	</h:form>
+ </ui:define>	 
+	</ui:composition>
+</html>

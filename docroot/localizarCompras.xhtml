@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form>
+	
+
+		<p:panel header="Localizar Compras">
+			<p:growl />
+
+			<p:panelGrid columns="2">
+
+				<h:outputLabel value="Login" for="login" />
+				<h:inputText id="login" value="#{compraBean.compraVO.cliente.codigo}" />
+				
+				
+				
+				<h:outputLabel value="" for="espaco" />
+				<h:commandButton value="Gravar" action="#{compraBean.seleciona}"
+					icon="ui-icon-disk" />
+
+			</p:panelGrid>
+		</p:panel>
+
+		<p:separator />
+
+		<p:dataTable value="#{compraBean.localizaCompras}" var="compra">
+		
+			<p:column headerText="Numero">
+					#{compra.numero}
+				</p:column>
+
+			<p:column headerText="Data">
+					#{compra.data}
+				</p:column>
+				<p:column headerText="Responsavel">
+					#{compra.responsavel}
+				</p:column>
+				<p:column headerText="Valor">
+					#{compra.valor}
+				</p:column>
+				<p:column headerText="Cliente">
+					#{compra.cliente.nome}
+				</p:column>
+				<p:column headerText="Reserva">
+					#{compra.reserva.codigo}
+				</p:column>
+
+		</p:dataTable>
+
+
+	</h:form>
+ </ui:define>	 
+	</ui:composition>
+</html>

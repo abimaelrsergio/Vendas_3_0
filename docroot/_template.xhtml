@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" />
+<h:head>
+	<title>Sistema de Vendas Fiap</title>
+</h:head>
+<h:body>
+	
+	<div id="blocoCabecalho">
+		<div class="container">
+		<center>
+		<img src="#{facesContext.externalContext.requestContextPath}/docroot/resources/imagens/Logofiap.jpg" alt="fiap" />
+		</center>
+		</div>
+		<div id="menuBar">
+			    	<ui:include src="menu.xhtml" />	
+		</div>
+		<p:separator />
+	</div>
+	
+	<div id="blocoConteudo">
+		<div class="container">
+         <div id="content" class="floater">  
+			<ui:insert name="corpo"/>
+			
+			 </div>
+ 			</div>
+		</div>
+	
+	
+	<div id="blocoRodape">
+		<div class="container">
+		<p:separator />
+			<p>Copyright 2012. Todos os Direitos reservados</p>
+		</div>
+	</div>
+	
+</h:body>
+</html>

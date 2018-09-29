@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form>
+		
+
+		<p:panel header="Excluir Cliente ">
+			<p:growl />
+
+			<p:panelGrid columns="2">
+
+				<h:outputLabel value="Nome" for="nome" />
+				<h:inputText class="tamanho" id="nome" value="#{clienteBean.clienteVO.nome}" />
+				
+				<h:outputLabel value="" for="espaco" />
+				<h:commandButton value="Gravar" action="#{clienteBean.excluir}"
+					icon="ui-icon-disk" />
+
+			</p:panelGrid>
+		</p:panel>
+
+
+		<p:dataTable value="#{clienteBean.clientes}" var="cliente">
+
+			
+			<p:column headerText="Codigo">
+					#{cliente.codigo}
+			</p:column>
+			<p:column headerText="Nome">
+					#{cliente.nome}
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+ </ui:define>	 
+	</ui:composition>
+</html>

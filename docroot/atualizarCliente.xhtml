@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form id="form">  
+  
+    <p:growl id="msgs" showDetail="true" />  
+  
+    <p:dataTable id="clientes" var="cliente" value="#{clienteBean.clientes}" >
+          
+        <p:column headerText="Codigo" >  
+            <h:outputText value="#{cliente.codigo}" />  
+        </p:column>  
+  
+        <p:column headerText="Nome" >  
+            <h:outputText value="#{cliente.nome}" />  
+        </p:column>  
+  
+        <p:column headerText="Endereco" >  
+            <h:outputText value="#{cliente.endereco}" />  
+        </p:column>  
+  
+        <p:column headerText="Telefone">  
+            <h:outputText value="#{cliente.telefone}" />  
+        </p:column>  
+        
+         <p:column headerText="Situacao" >  
+            <h:outputText value="#{cliente.situacao}" />  
+        </p:column> 
+        
+        
+        <p:column style="width:4%">  
+                <p:commandButton id="selectButton" update=":form:display" oncomplete="clienteDialog.show()" icon="ui-icon-search" title="Atualizar">  
+                <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.clienteVO}" />  
+            </p:commandButton>  
+        </p:column>   
+  
+    </p:dataTable>  
+  
+    <p:dialog header="Atualiza Cliente" widgetVar="clienteDialog" resizable="false" id="clienteDlg"  
+                showEffect="fade" hideEffect="explode" modal="true" >  
+                
+ 
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+   
+  
+            <h:outputText value="Codigo:" />  
+            <h:inputText value="#{clienteBean.clienteVO.codigo}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Nome:" />  
+            <h:inputText value="#{clienteBean.clienteVO.nome}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Endereco:" />  
+            <h:inputText value="#{clienteBean.clienteVO.endereco}" style="font-weight:bold"/>  
+  
+            <h:outputText value="Telefone:" />  
+            <h:inputText value="#{clienteBean.clienteVO.telefone}" style="font-weight:bold"/> 
+            
+             <h:outputText value="Situacao:" />  
+            <h:inputText value="#{clienteBean.clienteVO.situacao}" style="font-weight:bold"/>  
+  
+           
+            
+            <h:commandButton value="Salvar" action="#{clienteBean.atualizar}"
+					icon="ui-icon-disk" />
+  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+  
+</h:form> 
+ </ui:define>	 
+	</ui:composition>
+</html>

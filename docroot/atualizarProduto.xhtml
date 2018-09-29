@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<h:form id="form">  
+  
+    <p:growl id="msgs" showDetail="true" />  
+  
+    <p:dataTable id="produtos" var="produto" value="#{produtoBean.produtos}" >
+          
+        <p:column headerText="Codigo" >  
+            <h:outputText value="#{produto.codigo}" />  
+        </p:column>  
+  
+        <p:column headerText="Descricao" >  
+            <h:outputText value="#{produto.descricao}" />  
+        </p:column>  
+  
+        <p:column headerText="Preco" >  
+            <h:outputText value="#{produto.preco}" />  
+        </p:column>  
+  
+        <p:column headerText="Estoque">  
+            <h:outputText value="#{produto.estoque}" />  
+        </p:column>  
+        
+      
+        
+        <p:column style="width:4%">  
+                <p:commandButton id="selectButton" update=":form:display" oncomplete="produtoDialog.show()" icon="ui-icon-search" title="Atualizar">  
+                <f:setPropertyActionListener value="#{produto}" target="#{produtoBean.produtoVO}" />  
+            </p:commandButton>  
+        </p:column>   
+  
+    </p:dataTable>  
+  
+    <p:dialog header="Atualiza Produto" widgetVar="produtoDialog" resizable="false" id="produtoDlg"  
+                showEffect="fade" hideEffect="explode" modal="true" >  
+                
+ 
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+   
+  
+            <h:outputText value="Codigo:" />  
+            <h:inputText value="#{produtoBean.produtoVO.codigo}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Descricao:" />  
+            <h:inputText value="#{produtoBean.produtoVO.descricao}" disabled="true" style="font-weight:bold"/>  
+  
+            <h:outputText value="Preco:" />  
+            <h:inputText value="#{produtoBean.produtoVO.preco}" style="font-weight:bold"/>  
+  
+            <h:outputText value="Estoque:" />  
+            <h:inputText value="#{produtoBean.produtoVO.estoque}" style="font-weight:bold"/> 
+            
+           
+            
+            <h:commandButton value="Salvar" action="#{produtoBean.atualizar}"
+					icon="ui-icon-disk" />
+  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+  
+</h:form> 
+ </ui:define>	 
+	</ui:composition>
+</html>
